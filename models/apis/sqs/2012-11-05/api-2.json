@@ -873,7 +873,7 @@
     "ReceiveMessageResult":{
       "type":"structure",
       "members":{
-        "Messages":{"shape":"MessageList"}
+        "Message":{"shape":"Message"}
       }
     },
     "RemovePermissionRequest":{
