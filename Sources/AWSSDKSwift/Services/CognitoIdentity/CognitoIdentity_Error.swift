@@ -10,11 +10,11 @@ public enum CognitoIdentityErrorType: AWSErrorType {
     case internalErrorException(message: String?)
     case resourceNotFoundException(message: String?)
     case resourceConflictException(message: String?)
+    case concurrentModificationException(message: String?)
     case externalServiceException(message: String?)
+    case developerUserAlreadyRegisteredException(message: String?)
     case limitExceededException(message: String?)
     case invalidIdentityPoolConfigurationException(message: String?)
-    case concurrentModificationException(message: String?)
-    case developerUserAlreadyRegisteredException(message: String?)
 }
 
 extension CognitoIdentityErrorType {
@@ -36,16 +36,16 @@ extension CognitoIdentityErrorType {
             self = .resourceNotFoundException(message: message)
         case "ResourceConflictException":
             self = .resourceConflictException(message: message)
+        case "ConcurrentModificationException":
+            self = .concurrentModificationException(message: message)
         case "ExternalServiceException":
             self = .externalServiceException(message: message)
+        case "DeveloperUserAlreadyRegisteredException":
+            self = .developerUserAlreadyRegisteredException(message: message)
         case "LimitExceededException":
             self = .limitExceededException(message: message)
         case "InvalidIdentityPoolConfigurationException":
             self = .invalidIdentityPoolConfigurationException(message: message)
-        case "ConcurrentModificationException":
-            self = .concurrentModificationException(message: message)
-        case "DeveloperUserAlreadyRegisteredException":
-            self = .developerUserAlreadyRegisteredException(message: message)
         default:
             return nil
         }

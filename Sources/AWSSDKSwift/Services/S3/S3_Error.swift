@@ -5,8 +5,8 @@ import AWSSDKSwiftCore
 /// Error enum for S3
 public enum S3ErrorType: AWSErrorType {
     case noSuchBucket(message: String?)
-    case noSuchKey(message: String?)
     case objectNotInActiveTierError(message: String?)
+    case noSuchKey(message: String?)
     case bucketAlreadyExists(message: String?)
     case bucketAlreadyOwnedByYou(message: String?)
     case objectAlreadyInActiveTierError(message: String?)
@@ -22,10 +22,10 @@ extension S3ErrorType {
         switch errorCode {
         case "NoSuchBucket":
             self = .noSuchBucket(message: message)
-        case "NoSuchKey":
-            self = .noSuchKey(message: message)
         case "ObjectNotInActiveTierError":
             self = .objectNotInActiveTierError(message: message)
+        case "NoSuchKey":
+            self = .noSuchKey(message: message)
         case "BucketAlreadyExists":
             self = .bucketAlreadyExists(message: message)
         case "BucketAlreadyOwnedByYou":

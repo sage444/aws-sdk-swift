@@ -281,8 +281,8 @@ extension AWSService {
             switch shape.type {
             case .structure:
                 typeForHint = .structure
-            case .list:
-                typeForHint = .list
+            case .list(_, let flattened):
+                typeForHint = .list(flat: flattened)
             case .map:
                 typeForHint = .map
             case .enum:
@@ -440,7 +440,7 @@ extension AWSService {
 
 extension Collection where Iterator.Element == Member {
     public func toSwiftArgumentSyntax() -> String {
-        return self.map({ $0.toSwiftArgumentSyntax() }).joined(separator: ", ")
+        return self.sorted{ $0.name < $1.name }.map({ $0.toSwiftArgumentSyntax() }).joined(separator: ", ")
     }
 }
 
@@ -460,8 +460,8 @@ extension Shape {
         case .boolean:
             return "Bool"
 
-        case .list(let shape):
-            return "[\(shape.swiftTypeName)]"
+        case .list(let type, _):
+            return "[\(type.swiftTypeName)]"
 
         case .map(key: let keyShape, value: let valueShape):
             return "[\(keyShape.swiftTypeName): \(valueShape.swiftTypeName)]"

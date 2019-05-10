@@ -124,7 +124,8 @@ struct AWSService {
             if let locationName = json["member"]["locationName"].string {
                 let _type = try shapeType(from: shapeJSON, level: level+1)
                 let repeats = Shape(name: json["member"]["shape"].stringValue, type: _type)
-                let shape = Shape(name: json["member"]["shape"].stringValue, type: .list(repeats))
+                let flattened = json["flattened"].boolValue
+                let shape = Shape(name: json["member"]["shape"].stringValue, type: .list(type: repeats, flattened: flattened))
                 let member = Member(
                     name: locationName,
                     required: false,
@@ -138,7 +139,8 @@ struct AWSService {
             } else {
                 let _type = try shapeType(from: shapeJSON, level: level+1)
                 let shape = Shape(name: json["member"]["shape"].stringValue, type: _type)
-                type = .list(shape)
+                let flatened = json["flattened"].boolValue
+                type = .list(type: shape, flattened: flatened)
             }
 
         case "structure":
