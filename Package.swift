@@ -1,4 +1,4 @@
-// swift-tools-version:4.1
+// swift-tools-version:5.0
 import PackageDescription
 
 let package = Package(
@@ -16,6 +16,7 @@ let package = Package(
     ],
     dependencies: [
         .package(url: "https://github.com/sage444/aws-sdk-swift-core.git", .branch("master")),
+//        .package(url: "https://github.com/swift-aws/aws-sdk-swift-core.git", .branch("master")),
         .package(url: "https://github.com/IBM-Swift/SwiftyJSON.git", .upToNextMajor(from: "17.0.2"))
     ],
     targets: [

@@ -6,7 +6,7 @@ public struct S3RequestMiddleware: AWSRequestMiddleware {
     public init () {}
 
     public func chain(request: AWSRequest) throws -> AWSRequest {
-        var request = request
+//        var request = request
         return request
         /*
         
